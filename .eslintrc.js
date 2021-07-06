@@ -1,0 +1,76 @@
+module.exports = {
+    root: true,
+    extends: [
+        '@react-native-community',
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
+        'plugin:prettier/recommended',
+    ],
+    plugins: ['import', 'react', 'react-native', 'react-hooks', '@typescript-eslint', 'prettier'],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true,
+            classes: true,
+        },
+        ecmaVersion: 2021,
+        sourceType: 'module',
+    },
+    rules: {
+        //        local syntax principles
+        'quotes': ['error', 'single'],
+        'no-multi-spaces': 'error',
+        'camelcase': 'error',
+        'comma-style': ['error', 'last'],
+        'func-call-spacing': ['error', 'never'],
+        'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
+        'function-paren-newline': ['error', 'multiline'],
+        'key-spacing': ['error', { beforeColon: false, afterColon: true, mode: 'strict' }],
+        'linebreak-style': ['error', 'unix'],
+        //        easy-to-read-and-refactor syntax
+        'no-else-return': ['error', { allowElseIf: false }],
+        'no-shadow': ['error', { hoist: 'never' }],
+        'func-names': ['error', 'never'],
+        'dot-notation': 'error',
+        'default-case-last': 'error',
+        'react-native/no-inline-styles': 'warn',
+        'react-native/no-color-literals': 'warn',
+        //        code security enhancing syntax
+        'init-declarations': ['warn', 'always'],
+        'default-param-last': 'error',
+        'default-case': 'error',
+        'react-native/no-raw-text': 'error',
+        'react-native/split-platform-components': 'error',
+        //        code cleanup rules
+        'no-unused-vars': 'warn',
+        'react-native/no-unused-styles': 'warn',
+        //        hindering and useless syntax
+        'max-classes-per-file': 'off',
+        'no-use-before-define': 'off',
+        'react/prop-types': 'off',
+        'react/display-name': 'off',
+        'react/style-prop-object': 'off',
+        'react-native/sort-styles': 'off',
+        '@typescript-eslint/no-use-before-define': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        //        prettier config
+        'prettier/prettier': [
+            'error',
+            {
+                bracketSpacing: true,
+                jsxBracketSameLine: false,
+                jsxSingleQuote: true,
+                printWidth: 120,
+                semi: true,
+                singleQuote: true,
+                tabWidth: 4,
+                trailingComma: 'all',
+                quoteProps: 'consistent',
+                arrowParens: 'avoid',
+            },
+        ],
+    },
+};
