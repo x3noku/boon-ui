@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "boon-ui",
+    "slug": "boon-ui",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "boon-ui"
+}
