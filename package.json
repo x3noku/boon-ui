@@ -6,6 +6,7 @@
     "web": "expo start --web",
     "start": "react-native start",
     "prepare": "husky install",
+    "prestorybook": "rnstl",
     "storybook": "start-storybook -p 7007",
     "build-storybook": "build-storybook"
   },
@@ -48,6 +49,7 @@
     "husky": ">=6",
     "lint-staged": ">=10",
     "prettier": "^2.3.2",
+    "react-native-storybook-loader": "^2.0.4",
     "typescript": "~4.0.0"
   },
   "private": true,
@@ -58,5 +60,13 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix"
+  },
+  "config": {
+    "react-native-storybook-loader": {
+      "searchDir": ["./src/components"],
+      "pattern": "**/*.stories.js",
+      "outputFile": "./storybook/storyLoader.js"
+    }
   }
+
 }
