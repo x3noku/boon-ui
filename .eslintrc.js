@@ -26,7 +26,7 @@ module.exports = {
         'comma-style': ['error', 'last'],
         'func-call-spacing': ['error', 'never'],
         'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
-        'function-paren-newline': ['error', 'multiline'],
+        'function-paren-newline': ['error', 'consistent'],
         'key-spacing': ['error', { beforeColon: false, afterColon: true, mode: 'strict' }],
         'linebreak-style': ['error', 'unix'],
         //        easy-to-read-and-refactor syntax
