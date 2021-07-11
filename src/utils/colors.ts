@@ -1,4 +1,5 @@
-import { namedColors } from '@styles/colors';
+import colors, { namedColors } from '@styles/colors';
+import log from '@utils/log';
 
 /*
  *  Examples:
@@ -11,14 +12,21 @@ import { namedColors } from '@styles/colors';
 export const formatColor = (color: string): string => {
     const pattern = new RegExp('^#([a-fA-F0-9]){3}$|[a-fA-F0-9]{4}$|[a-fA-F0-9]{6}$|[a-fA-F0-9]{8}$');
 
-    if (!pattern.test(color) && !namedColors.get(color))
-        throw new TypeError('TypeError: passed color has an invalid format');
+    if (!pattern.test(color) && !namedColors.get(color)) {
+        // fixme: ask for reaction to invalid argument
+        log.utils.error('TypeError: passed color has an invalid format');
+        return formatColor(colors.TRANSPARENT);
+    }
 
     let formattedColor = (namedColors.get(color) || color).replace('#', '');
 
     if (formattedColor.length === 3 || formattedColor.length === 4) {
         const letters = formattedColor.match(/./g);
-        if (!letters) throw new Error('RuntimeError: failed to split color to letters');
+        if (!letters) {
+            // fixme: ask for reaction to error
+            log.utils.error('RuntimeError: failed to split color to letters');
+            return formatColor(colors.TRANSPARENT);
+        }
 
         formattedColor = '';
         letters.forEach(letter => (formattedColor += letter + letter));
@@ -38,12 +46,16 @@ export const toHsva = (
     const formattedColor = formatColor(color);
 
     const letters = formattedColor.match(/.{1,2}/g);
-    if (!letters) throw new Error('RuntimeError: failed to split color to letters');
+    if (!letters) {
+        // fixme: ask for reaction to error
+        log.utils.error('RuntimeError: failed to split color to letters');
+        return toHsva(colors.TRANSPARENT);
+    }
 
     const [r, g, b, a] = letters.map(letter => parseInt(letter, 16)).map(number => number / 255);
 
     const max = Math.max(r, g, b);
-    const min = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
 
     let h = max !== min ? max : 0;
     const v = max;
@@ -148,12 +160,20 @@ export const setAlpha = (color: string, alpha: number): string => {
     );
 };
 
-export const darkenColor = (color: string): string => {
-    // eslint-disable-next-line prefer-const
-    let { h, s, v, a } = toHsva(color);
+export const darkenColor = (color: string, force = -20) => {
+    const formattedColor = formatColor(color);
 
-    s = Math.min(s > 0.5 ? s * 1.15 : s * 1.6, 1);
-    v = Math.min(v > 0.875 ? v * 0.9 : v * 0.9, 1);
+    const letters = formattedColor.match(/.{1,2}/g);
+    if (!letters) {
+        // fixme: ask for reaction to error
+        log.utils.error('RuntimeError: failed to split color to letters');
+        return toHsva(colors.TRANSPARENT);
+    }
 
-    return toHex({ h, s, v, a });
+    const [r, g, b, a] = letters.map(letter => Math.max(Math.min(255, parseInt(letter, 16) + force), 0).toString(16));
+
+    return '#'
+        .concat([r, g, b].map(letter => letter.padStart(2, '0')).join(''))
+        .concat(a ? a.padStart(2, '0') : 'FF')
+        .toUpperCase();
 };
