@@ -160,14 +160,14 @@ export const setAlpha = (color: string, alpha: number): string => {
     );
 };
 
-export const darkenColor = (color: string, force = -20) => {
+export const darkenColor = (color: string, force = -30): string => {
     const formattedColor = formatColor(color);
 
     const letters = formattedColor.match(/.{1,2}/g);
     if (!letters) {
         // fixme: ask for reaction to error
         log.utils.error('RuntimeError: failed to split color to letters');
-        return toHsva(colors.TRANSPARENT);
+        return darkenColor(colors.WHITE);
     }
 
     const [r, g, b, a] = letters.map(letter => Math.max(Math.min(255, parseInt(letter, 16) + force), 0).toString(16));
