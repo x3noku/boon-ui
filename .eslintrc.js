@@ -4,6 +4,7 @@ module.exports = {
         '@react-native-community',
         'eslint:recommended',
         'plugin:react/recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
         'prettier',
         'plugin:prettier/recommended',
@@ -22,7 +23,7 @@ module.exports = {
         //        local syntax principles
         'quotes': ['error', 'single'],
         'no-multi-spaces': 'error',
-        'camelcase': 'error',
+        // 'camelcase': 'error',
         'comma-style': ['error', 'last'],
         'func-call-spacing': ['error', 'never'],
         'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
@@ -30,8 +31,8 @@ module.exports = {
         'key-spacing': ['error', { beforeColon: false, afterColon: true, mode: 'strict' }],
         'linebreak-style': ['error', 'unix'],
         //        easy-to-read-and-refactor syntax
+        '@typescript-eslint/no-shadow': ['error', { hoist: 'never' }],
         'no-else-return': ['error', { allowElseIf: false }],
-        'no-shadow': ['error', { hoist: 'never' }],
         'func-names': ['error', 'never'],
         'dot-notation': 'error',
         'default-case-last': 'error',
@@ -44,17 +45,20 @@ module.exports = {
         'react-native/no-raw-text': 'error',
         'react-native/split-platform-components': 'error',
         //        code cleanup rules
-        'no-unused-vars': 'warn',
+        '@typescript-eslint/no-unused-vars': 'warn',
         'react-native/no-unused-styles': 'warn',
         //        hindering and useless syntax
-        'max-classes-per-file': 'off',
-        'no-use-before-define': 'off',
+        'no-shadow': 'off',
+        'no-unused-vars': 'off',
         'react/prop-types': 'off',
         'react/display-name': 'off',
+        'max-classes-per-file': 'off',
+        'no-use-before-define': 'off',
         'react/style-prop-object': 'off',
         'react-native/sort-styles': 'off',
-        '@typescript-eslint/no-use-before-define': 'off',
+        'react-hooks/rules-of-hooks': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         //        prettier config
         'prettier/prettier': [
