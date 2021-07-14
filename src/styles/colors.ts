@@ -1,18 +1,83 @@
-export default {
+const colors = {
     TRANSPARENT: '#00000000',
     WHITE: '#FFFFFF',
+    BLACK: '#000000',
+
+    GREEN_PRIMARY: '#2ED176',
+    GREEN_SHADOWED: '#6CBD90',
+    GREEN_PALE: '#E1FFEE',
+
     BLUE_PRIMARY: '#5DB3FF',
     BLUE_SHADOWED: '#7CADD8',
-    BLUE_BACKGROUND: '#DBF1FF',
-    BLUE_GRADIENT_START: '#9ED2FF',
-    BLUE_GRADIENT_END: '#6BBAFF',
-    RED: '#FF6767',
+    BLUE_PALE: '#DBF1FF',
+
+    RED_PRIMARY: '#FF6767',
+    RED_SHADOWED: '#D58484',
+    RED_PALE: '#FFF1F1',
+
+    TEXT_ACCENT_GREEN: '#87FFB9',
+    TEXT_ACCENT_BLUE: '#87C7FF',
+    TEXT_ACCENT_RED: '#FF8787',
 
     TEXT_PRIMARY: '#505050',
-    TEXT_DARK: '#4E4E4E',
-    TEXT_SECONDARY: '#707070',
-    TEXT_ACCENT: '#87C7FF',
+    TEXT_SHADOWED: '#4E4E4E',
+    TEXT_PALE: '#707070',
 };
+
+export enum ColorSchemeKey {
+    Green = 'green',
+    Blue = 'blue',
+    Red = 'red',
+}
+
+export type TColorScheme = {
+    primary: string;
+    shadowed: string;
+    pale: string;
+    textPrimary: string;
+    textAccent: string;
+    textShadowed: string;
+    textPale: string;
+};
+
+export const colorSchemes = new Map<ColorSchemeKey, TColorScheme>([
+    [
+        ColorSchemeKey.Green,
+        {
+            primary: colors.GREEN_PRIMARY,
+            shadowed: colors.GREEN_SHADOWED,
+            pale: colors.GREEN_PALE,
+            textPrimary: colors.TEXT_PRIMARY,
+            textAccent: colors.TEXT_ACCENT_GREEN,
+            textShadowed: colors.TEXT_SHADOWED,
+            textPale: colors.TEXT_PALE,
+        },
+    ],
+    [
+        ColorSchemeKey.Blue,
+        {
+            primary: colors.BLUE_PRIMARY,
+            shadowed: colors.BLUE_SHADOWED,
+            pale: colors.BLUE_PALE,
+            textPrimary: colors.TEXT_PRIMARY,
+            textAccent: colors.TEXT_ACCENT_BLUE,
+            textShadowed: colors.TEXT_SHADOWED,
+            textPale: colors.TEXT_PALE,
+        },
+    ],
+    [
+        ColorSchemeKey.Red,
+        {
+            primary: colors.RED_PRIMARY,
+            shadowed: colors.RED_SHADOWED,
+            pale: colors.RED_PALE,
+            textPrimary: colors.TEXT_PRIMARY,
+            textAccent: colors.TEXT_ACCENT_RED,
+            textShadowed: colors.TEXT_SHADOWED,
+            textPale: colors.TEXT_PALE,
+        },
+    ],
+]);
 
 export const namedColors = new Map<string, string>([
     ['aliceblue', '#f0f8ff'],
@@ -161,3 +226,5 @@ export const namedColors = new Map<string, string>([
     ['yellow', '#ffff00'],
     ['yellowgreen', '#9acd32'],
 ]);
+
+export default colors;
